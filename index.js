@@ -3,7 +3,8 @@ require('dotenv').config();
 
 
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
+
 
 const {dbConnection }=require('./database/config');
 //const { Router } = require('express');
@@ -12,7 +13,11 @@ const {dbConnection }=require('./database/config');
 const app = express();
 
 //configurar CORS.. Use es un middleware es una funcion que se va a ejecutar siempre para las siguentes lineas
-app.use(cors())
+app.use(cors());
+
+//carpeta publica..para que se renderice el index.html de public 
+app.use(express.static('public'))
+
 //para recibir la informacion del frontEnd, lectura y parseo del body
 app.use( express.json() );
 
@@ -37,3 +42,4 @@ app.listen(process.env.PORT,() => {
 //encriptar contraseñas (npm i bcryptjs) lo usamos donde creamos el usuario
 //en el JWT npm i jsonwebtoken (helpers JWT)d
 //npm i uuid para que no choquen los ID en la parte del uploads
+//npm install google-auth-library --save
